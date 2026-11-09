@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cortejon · Barbería</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --ink:#0A0A0A; --muted:#5C5C5C; --line:#D9D9D9; --surface:#F5F5F5;
+  --hero-bg:#0A0A0A; --hero-ink:#FFFFFF; --hero-muted:#BDBDBD;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0A0A0A;--ink:#F5F5F5;--muted:#A8A8A8;--line:#2E2E2E;--surface:#141414;--hero-bg:#F5F5F5;--hero-ink:#0A0A0A;--hero-muted:#4A4A4A}}
+:root[data-theme="dark"]{--bg:#0A0A0A;--ink:#F5F5F5;--muted:#A8A8A8;--line:#2E2E2E;--surface:#141414;--hero-bg:#F5F5F5;--hero-ink:#0A0A0A;--hero-muted:#4A4A4A}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 Jost,system-ui,sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1;margin:0}
+
+.hero{background:var(--hero-bg);color:var(--hero-ink);min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 24px}
+.hero .wrap{display:grid;grid-template-columns:1fr 84px;gap:40px;align-items:stretch;padding-top:72px;padding-bottom:72px}
+.hero h1{font-family:Syncopate,"Jost",system-ui,sans-serif;font-size:clamp(1.8rem,9vw,5.5rem);font-weight:700;letter-spacing:.14em;padding-left:.14em;line-height:1.1}
+.hero p{max-width:32ch;color:var(--hero-muted);font-size:1.15rem;margin:24px 0 32px}
+.pole{border-radius:42px;border:3px solid var(--hero-ink);min-height:300px;
+  background:repeating-linear-gradient(-45deg,var(--hero-ink) 0 14px,var(--hero-bg) 14px 28px);
+  background-size:100% 79.2px;animation:spin 5s linear infinite}
+@keyframes spin{to{background-position:0 79.2px}}
+@media (prefers-reduced-motion:reduce){.pole{animation:none}}
+.btn{display:inline-block;background:var(--ink);color:var(--bg);font:500 1rem Jost,sans-serif;letter-spacing:.04em;text-decoration:none;padding:15px 30px;border:2px solid var(--ink);cursor:pointer}
+.btn:hover{background:transparent;color:var(--ink)}
+.hero .btn{background:var(--hero-ink);color:var(--hero-bg);border-color:var(--hero-ink)}
+.hero .btn:hover{background:transparent;color:var(--hero-ink)}
+
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+h2{font-size:clamp(2.2rem,6vw,3.2rem);margin-bottom:32px}
+
+.prices{list-style:none;margin:0;padding:0}
+.prices li{display:flex;align-items:baseline;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
+.prices .name{font-weight:500;font-size:1.1rem}
+.prices .desc{color:var(--muted);font-size:.95rem;display:block}
+.prices .dots{flex:1;border-bottom:1px dotted var(--muted);transform:translateY(-5px)}
+.prices .eur{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.8rem;font-weight:700;white-space:nowrap}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+table{border-collapse:collapse;width:100%}
+td{padding:12px 0;border-bottom:1px solid var(--line)}
+td:last-child{text-align:right;font-weight:500}
+.closed td{color:var(--muted)}
+.contact p{margin:0 0 12px}
+.contact a{font-weight:500}
+
+form{background:var(--surface);border:1px solid var(--ink);padding:32px;display:grid;gap:18px;max-width:560px}
+label{display:grid;gap:6px;font-weight:500;font-size:.95rem}
+input,select{font:inherit;padding:12px;border:1px solid var(--muted);border-radius:0;background:var(--bg);color:var(--ink)}
+.note{color:var(--muted);font-size:.9rem;margin:0}
+footer{padding:36px 0 56px;color:var(--muted);font-size:.9rem}
+
+@media (max-width:700px){
+  .hero .wrap{grid-template-columns:1fr 52px;gap:24px;padding-top:48px;padding-bottom:48px}
+  .pole{min-height:220px;border-width:2px;border-radius:26px}
+  .two{grid-template-columns:1fr;gap:40px}
+  section{padding:56px 0}
+}
+
+.barber{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;border:1px solid var(--ink);padding:32px;background:var(--surface)}
+.bname{font-family:"Cormorant Garamond",Georgia,serif;font-size:3rem;font-weight:700;line-height:1;margin:0 0 8px}
+.bdur{margin:0;color:var(--muted)}
+[hidden]{display:none!important}
+.booking{position:fixed;inset:0;z-index:50;background:var(--bg);color:var(--ink);overflow:auto;padding:calc(24px + env(safe-area-inset-top,0px)) 24px calc(32px + env(safe-area-inset-bottom,0px))}
+.bk-inner{max-width:480px;margin:0 auto}
+.back{background:none;border:0;color:var(--ink);font:500 1rem Jost,sans-serif;cursor:pointer;padding:8px 0;margin-bottom:16px;text-decoration:underline}
+.booking h2{font-size:2.4rem;margin-bottom:24px}
+.booking h3{font:500 1.1rem Jost,sans-serif;margin:28px 0 12px}
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;text-transform:capitalize}
+.cal-head button{width:44px;height:44px;border:1px solid var(--ink);background:none;color:var(--ink);font-size:1.4rem;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.dow span{text-align:center;color:var(--muted);font-size:.85rem;padding:6px 0}
+.days button,.hours button{font:500 1rem Jost,sans-serif;border:1px solid var(--ink);background:none;color:var(--ink);cursor:pointer}
+.days button{aspect-ratio:1}
+.days button:disabled,.cal-head button:disabled{opacity:.25;border-color:var(--line);cursor:not-allowed}
+.days button.sel,.hours button.sel{background:var(--ink);color:var(--bg)}
+.hours{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hours button{padding:12px 0}
+#sum{margin:28px 0 16px;font-weight:500}
+.em{margin-bottom:12px}
+.hint{color:var(--muted);font-size:.9rem;margin:0 0 16px}
+
+.svc{display:grid;gap:8px}
+.svc button{display:flex;justify-content:space-between;align-items:center;font:500 1.05rem Jost,sans-serif;padding:16px;border:1px solid var(--ink);background:none;color:var(--ink);cursor:pointer;text-align:left}
+.svc button.sel{background:var(--ink);color:var(--bg)}
+.svc .pr{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.6rem;font-weight:700}
+.done h2{margin-bottom:12px}
+.done .thanks{color:var(--muted);margin:0 0 28px}
+.recap{list-style:none;margin:0 0 28px;padding:0;border-top:1px solid var(--ink)}
+.recap li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.recap li span:first-child{color:var(--muted)}
+.recap li span:last-child{font-weight:500;text-align:right;text-transform:capitalize}
+.addon{display:flex;align-items:center;gap:12px;margin-top:12px;padding:14px 16px;border:1px solid var(--line);cursor:pointer;font-weight:500}
+.addon input{width:20px;height:20px;accent-color:var(--ink)}
+.addon b{font-weight:600}
+.faq{border-top:1px solid var(--ink)}
+.faq details{border-bottom:1px solid var(--line);padding:16px 0}
+.faq summary{cursor:pointer;font-weight:500;font-size:1.05rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.4rem;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq p{margin:12px 0 0;color:var(--muted);max-width:60ch}
+.qh{font:500 1.2rem Jost,sans-serif;margin:48px 0 16px}
+textarea{font:inherit;padding:12px;border:1px solid var(--muted);border-radius:0;background:var(--bg);color:var(--ink);min-height:120px;resize:vertical}
+#qok{font-weight:500;margin:0}
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>Cortejon</h1>
+</header>
+
+<main class="wrap">
+  <section id="servicios">
+    <h2>Servicios y precios</h2>
+    <ul class="prices">
+      <li><span><span class="name">Corte de pelo</span><span class="desc">Tijera o máquina, con lavado. Barba: +1 €</span></span><span class="dots"></span><span class="eur">7 €</span></li>
+    </ul>
+  </section>
+
+  <section id="barbero">
+    <h2>Barbero</h2>
+    <div class="barber">
+      <div>
+        <p class="bname">Álvaro</p>
+        <p class="bdur">Duración del corte: 25 a 30 minutos</p>
+      </div>
+      <a class="btn" href="https://calendly.com/alvarocastejon31/30min" target="_blank" rel="noopener">Reservar cita</a>
+    </div>
+  </section>
+
+  <section id="preguntas">
+    <h2>Preguntas</h2>
+    <div class="faq">
+      <details><summary>¿Cuánto cuesta?</summary><p>El corte de pelo cuesta 7 €. Si quieres también la barba, 1 € más (8 € en total).</p></details>
+      <details><summary>¿Cuánto dura el corte?</summary><p>Entre 25 y 30 minutos.</p></details>
+      <details><summary>¿Qué días abrís?</summary><p>Viernes, sábado y domingo por la tarde. Los huecos libres los ves al pulsar Reservar cita.</p></details>
+      <details><summary>¿Cómo reservo?</summary><p>Pulsa Reservar cita, elige día y hora y pon tu email. Te llega una confirmación por correo.</p></details>
+      <details><summary>¿Puedo cambiar o cancelar mi cita?</summary><p>Sí. Avísanos con tiempo con el formulario de abajo y buscamos otro hueco.</p></details>
+    </div>
+    <h3 class="qh">¿No encuentras tu respuesta?</h3>
+    <form id="q">
+      <label>Nombre<input id="qn" required autocomplete="name"></label>
+      <label>Tu email<input id="qm" type="email" required autocomplete="email"></label>
+      <label>Sobre qué es tu pregunta
+        <select id="qt">
+          <option>Mi cita</option><option>Cambiar o cancelar una cita</option><option>Precios y servicios</option><option>Otra pregunta</option>
+        </select>
+      </label>
+      <label>Tu pregunta<textarea id="qx" required></textarea></label>
+      <button class="btn" type="submit">Enviar pregunta</button>
+      <p id="qok" hidden>Se ha abierto tu correo con la pregunta. Envíalo para que te respondamos.</p>
+    </form>
+  </section>
+
+  <section id="info" class="two">
+    <div>
+      <h2>Horario</h2>
+      <table>
+        <tr><td>Lunes a jueves</td><td>Cerrado</td></tr>
+        <tr><td>Viernes</td><td>15:00 – 20:00</td></tr>
+        <tr><td>Sábado</td><td>15:00 – 20:00</td></tr>
+        <tr><td>Domingo</td><td>15:00 – 20:00</td></tr>
+      </table>
+    </div>
+    <div class="contact">
+      <h2>Síguenos</h2>
+      <p>Instagram: <a href="https://www.instagram.com/cortejonn">@Cortejonn</a></p>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap">© Cortejon</div></footer>
+
+
+<script>
+document.getElementById('q').addEventListener('submit',function(e){
+  e.preventDefault();
+  var g=function(i){return document.getElementById(i).value},m=g('qm');
+  var subj='Pregunta Cortejon: '+g('qt');
+  var body='Hola, soy '+g('qn')+'.\n\n'+g('qx')+'\n\nMi email: '+m;
+  document.getElementById('qok').hidden=false;
+  window.open('mailto:Cortejonn31@gmail.com?cc='+encodeURIComponent(m)+'&subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body),'_self');
+});
+</script>
+</body>
+</html>
